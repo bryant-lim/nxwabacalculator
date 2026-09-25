@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Settings - WhatsApp Pricing Calculator</title>
+  <meta name="description" content="Update WhatsApp Business Platform rates, foreign exchange rate, withholding tax, and local SST.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <h1 class="app-title">Rate & Tax Settings</h1>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">← Calculator</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+    </header>
+
+    <!-- Settings Form -->
+    <form id="pricing-form">
+      <!-- WABA Category Rates -->
+      <div class="form-card">
+        <div class="section-title" style="margin-top: 0;">
+          <span>Category Rates (USD)</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="setting-service-rate">Non-Template / Service Rate (USD)</label>
+          <input type="number" id="setting-service-rate" class="form-input" step="0.001" min="0" required inputmode="decimal">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="setting-free-tier">Free Monthly Service Tier (Messages)</label>
+          <input type="number" id="setting-free-tier" class="form-input" step="100" min="0" required inputmode="numeric">
+          <div class="form-hint">Meta free allowance (default: 1,000 / month)</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="setting-marketing-rate">Marketing Rate (USD)</label>
+          <input type="number" id="setting-marketing-rate" class="form-input" step="0.001" min="0" required inputmode="decimal">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="setting-utility-rate">Utility Rate (USD)</label>
+          <input type="number" id="setting-utility-rate" class="form-input" step="0.001" min="0" required inputmode="decimal">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="setting-auth-rate">Authentication Rate (USD)</label>
+          <input type="number" id="setting-auth-rate" class="form-input" step="0.001" min="0" required inputmode="decimal">
+        </div>
+      </div>
+
+      <!-- FX & Taxes -->
+      <div class="form-card">
+        <div class="section-title" style="margin-top: 0;">
+          <span>FX & Tax Settings</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="setting-currency-name">Local Currency Code</label>
+          <input type="text" id="setting-currency-name" class="form-input" value="MYR" maxlength="5" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="setting-fx-rate">Exchange Rate (1 USD = X Local Currency)</label>
+          <input type="number" id="setting-fx-rate" class="form-input" step="0.01" min="0.01" required inputmode="decimal">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="setting-wht-percent">Withholding Tax (WHT %)</label>
+          <input type="number" id="setting-wht-percent" class="form-input" step="0.1" min="0" max="100" required inputmode="decimal">
+          <div class="form-hint">Applies to base messaging cost</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="setting-sst-percent">Local SST (%)</label>
+          <input type="number" id="setting-sst-percent" class="form-input" step="0.1" min="0" max="100" required inputmode="decimal">
+          <div class="form-hint">Sales and Service Tax percentage</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="btn-group">
+        <button type="submit" class="btn btn-primary" id="btn-save">Save Settings</button>
+        <button type="button" class="btn btn-secondary" id="btn-reset">Reset to Defaults</button>
+      </div>
+    </form>
+
+    <!-- Feedback Toast -->
+    <div id="toast" class="toast">Settings saved successfully</div>
+  </div>
+
+  <script src="config.js?v=2"></script>
+  <script src="pricing.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>FAQ - WhatsApp Pricing Calculator</title>
+  <meta name="description" content="Frequently asked questions about WhatsApp Business Platform pricing, template messages, and service messages.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <h1 class="app-title">WhatsApp Pricing Calculator</h1>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">← Calculator</a>
+        <a href="pricing.html" class="nav-link">Settings</a>
+      </nav>
+    </header>
+
+    <!-- FAQ Title -->
+    <div class="faq-header">
+      <h2 class="faq-title">The five questions everyone asks</h2>
+    </div>
+
+    <!-- Accordion List -->
+    <div class="accordion-list">
+      <!-- Question 1 -->
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span class="accordion-question">Isn't WhatsApp free?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          The app on your phone is, and stays that way. What carries a price is the WhatsApp Business Platform, the official connection that a CRM, a helpdesk or an AI agent uses to send on your behalf. Meta charges it per delivered message, from a fraction of a cent to a few cents depending on the country. A per-message price is what stops automated sending from becoming spam, since software can push far more messages than a person ever would.
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span class="accordion-question">What is the difference between a template and a service message?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          A template is a message Meta approves before you are allowed to send it. It is the only thing that can open a conversation with someone new or go out in bulk, and the two you plan for here are marketing and utility. Authentication is a third, used for one-time codes. A service message is an ordinary reply inside a conversation a customer already started: typed by an agent, written by your AI, or sent from your CRM. If it is not an approved template, it is a service message.
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span class="accordion-question">Are the messages customers send me charged?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          No. Inbound has never been billed and is not being billed from October either. You pay for what you deliver, not for what you receive, so the size of your inbox is never the thing that drives the bill.
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span class="accordion-question">Is it really 1,000 free service messages?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          Yes. From 1 October 2026, Meta includes 1,000 delivered service messages per business phone number per calendar month, shared across all recipient markets. The market rate applies from the 1,001st and unused messages do not roll over. This allowance covers Meta service-message fees only; utility templates and any platform subscription are separate.
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span class="accordion-question">How are foreign exchange and local taxes (WHT / SST) calculated?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          Base messaging rates are billed in USD according to Meta's category rate card. The converted MYR estimates shown in this calculator reflect your configured exchange rate (FX), plus any applicable Withholding Tax (WHT) and local Sales and Service Tax (SST). You can customize these rates anytime in the Rate Settings page.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.accordion-item');
+        const isOpen = item.classList.contains('open');
+        item.classList.toggle('open', !isOpen);
+        trigger.setAttribute('aria-expanded', !isOpen);
+        const icon = trigger.querySelector('.accordion-icon');
+        if (icon) {
+          icon.textContent = !isOpen ? '×' : '+';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
