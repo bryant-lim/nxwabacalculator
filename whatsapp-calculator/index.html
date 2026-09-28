@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>WhatsApp Pricing Calculator</title>
+  <meta name="description" content="Calculate WhatsApp Business Platform messaging costs based on templates, replies, Meta October 1 updates, FX, and taxes.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <h1 class="app-title">WhatsApp Pricing Calculator</h1>
+      </div>
+      <nav class="nav-links">
+        <a href="faq.html" class="nav-link" id="nav-faq-link">FAQ</a>
+        <a href="pricing.html" class="nav-link" id="nav-settings-link">Settings</a>
+      </nav>
+    </header>
+
+    <!-- Hero / Intro -->
+    <div class="calculator-hero">
+      <h2 class="hero-title">Calculate what Meta charges for your WhatsApp Business account</h2>
+      <p class="hero-subtext">Use this free calculator to estimate Meta’s messaging charges from 1 October 2026.</p>
+      <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing#rate-cards-effective-october-1-2026" target="_blank" rel="noopener noreferrer" class="hero-meta-link">View official Meta rate cards ↗</a>
+    </div>
+
+    <!-- Projection Summary Cards -->
+    <div class="projection-grid">
+      <div class="projection-card full-width">
+        <div class="card-label">Monthly Projected Cost</div>
+        <div class="card-value" id="monthly-cost">$ 0.00</div>
+        <div class="card-subvalue" id="monthly-subvalue">~ RM 0.00</div>
+        <div class="tax-badge" id="tax-summary-note">Includes SST</div>
+      </div>
+      <div class="projection-card">
+        <div class="card-label">Daily Cost</div>
+        <div class="card-value" id="daily-cost">$ 0.00</div>
+        <div class="card-subvalue" id="daily-subvalue">~ RM 0.00</div>
+      </div>
+      <div class="projection-card">
+        <div class="card-label">Yearly Cost</div>
+        <div class="card-value" id="yearly-cost">$ 0.00</div>
+        <div class="card-subvalue" id="yearly-subvalue">~ RM 0.00</div>
+      </div>
+    </div>
+
+    <!-- Volume Inputs Header -->
+    <div class="section-heading">
+      <h3 class="section-heading-title">How much are you sending?</h3>
+      <p class="section-heading-sub">Outreach goes out as approved templates. Replies inside a conversation are service messages.</p>
+    </div>
+
+    <!-- Main Two-Card Input Grid -->
+    <div class="calculator-grid">
+      <!-- Card 1: Templates -->
+      <div class="input-card">
+        <h4 class="card-header-title">Templates</h4>
+        <p class="card-header-desc">
+          Bulk sends, and anything that opens a conversation with someone new. These always go out as a template Meta approved in advance.
+        </p>
+
+        <!-- Marketing -->
+        <div class="input-row">
+          <div class="input-row-header">
+            <div class="input-row-labels">
+              <span class="input-label-main">Marketing templates</span>
+              <span class="input-label-sub">Selling: promotions, offers, re-engagement.</span>
+            </div>
+            <input type="number" id="input-marketing" class="pill-number-input" value="10" min="0" step="1" inputmode="numeric">
+          </div>
+          <div class="slider-wrapper">
+            <input type="range" id="slider-marketing" class="styled-range" min="0" max="1000" step="1" value="10">
+          </div>
+        </div>
+
+        <!-- Utility -->
+        <div class="input-row">
+          <div class="input-row-header">
+            <div class="input-row-labels">
+              <span class="input-label-main">Utility templates</span>
+              <span class="input-label-sub">Informing: order updates, reminders, receipts.</span>
+            </div>
+            <input type="number" id="input-utility" class="pill-number-input" value="0" min="0" step="1" inputmode="numeric">
+          </div>
+          <div class="slider-wrapper">
+            <input type="range" id="slider-utility" class="styled-range" min="0" max="1000" step="1" value="0">
+          </div>
+        </div>
+
+        <!-- Authentication -->
+        <div class="input-row">
+          <div class="input-row-header">
+            <div class="input-row-labels">
+              <span class="input-label-main">Authentication templates</span>
+              <span class="input-label-sub">One-time codes, account verification.</span>
+            </div>
+            <input type="number" id="input-auth" class="pill-number-input" value="0" min="0" step="1" inputmode="numeric">
+          </div>
+          <div class="slider-wrapper">
+            <input type="range" id="slider-auth" class="styled-range" min="0" max="1000" step="1" value="0">
+          </div>
+        </div>
+
+        <!-- Bottom Banner -->
+        <div class="summary-banner">
+          <strong id="total-template-count">10</strong> template messages a month.
+        </div>
+      </div>
+
+      <!-- Card 2: Replies, human or AI -->
+      <div class="input-card">
+        <h4 class="card-header-title">Replies, human or AI</h4>
+        <p class="card-header-desc">
+          Not outbound. These are the replies inside a conversation, written by an agent, your AI or your CRM, including every reply after someone answers one of your templates.
+        </p>
+
+        <!-- Segmented Toggle: Estimate / Exact -->
+        <div class="segmented-control" role="tablist">
+          <button type="button" class="segment-btn active" id="btn-mode-estimate">Estimate</button>
+          <button type="button" class="segment-btn" id="btn-mode-exact">Exact</button>
+        </div>
+
+        <!-- Section: Estimate Mode -->
+        <div id="section-estimate">
+          <!-- Conversations -->
+          <div class="input-row">
+            <div class="input-row-header">
+              <div class="input-row-labels">
+                <span class="input-label-main">Conversations</span>
+                <span class="input-label-sub">How many a month.</span>
+              </div>
+              <input type="number" id="input-conversations" class="pill-number-input" value="10" min="0" step="1" inputmode="numeric">
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" id="slider-conversations" class="styled-range" min="0" max="1000" step="1" value="10">
+            </div>
+          </div>
+
+          <!-- Replies inside each one -->
+          <div class="input-row">
+            <div class="input-row-header">
+              <div class="input-row-labels">
+                <span class="input-label-main">Replies inside each one</span>
+                <span class="input-label-sub">Every bubble counts. Five bubbles is five messages.</span>
+              </div>
+              <input type="number" id="input-replies" class="pill-number-input" value="5.0" min="1" max="50" step="0.5" inputmode="decimal">
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" id="slider-replies" class="styled-range" min="1" max="25" step="0.5" value="5.0">
+            </div>
+          </div>
+
+          <!-- Bottom Banner Estimate -->
+          <div class="summary-banner">
+            <strong id="summary-reply-math">10 × 5.0 = 50</strong> service messages a month. The first 1,000 each month are free.
+          </div>
+        </div>
+
+        <!-- Section: Exact Mode -->
+        <div id="section-exact" style="display: none;">
+          <div class="input-row">
+            <div class="input-row-header">
+              <div class="input-row-labels">
+                <span class="input-label-main">Service messages</span>
+                <span class="input-label-sub">Total non-template reply messages a month.</span>
+              </div>
+              <input type="number" id="input-exact-service" class="pill-number-input" value="50" min="0" step="10" inputmode="numeric">
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" id="slider-exact-service" class="styled-range" min="0" max="5000" step="10" value="50">
+            </div>
+          </div>
+
+          <!-- Bottom Banner Exact -->
+          <div class="summary-banner">
+            <strong id="summary-exact-math">50</strong> service messages a month. The first 1,000 each month are free.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monthly Breakdown Table -->
+    <div class="breakdown-card">
+      <div class="input-label-main" style="font-size: 1rem; margin-bottom: 4px;">Monthly Projection Breakdown</div>
+      <table class="breakdown-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th class="text-right">Total</th>
+            <th class="text-right">Billable</th>
+            <th class="text-right">Cost (USD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Non-Template (Service)</td>
+            <td class="text-right" id="td-vol-service">0</td>
+            <td class="text-right" id="td-billable-service">0</td>
+            <td class="text-right" id="td-cost-service">$ 0.00</td>
+          </tr>
+          <tr>
+            <td>Marketing</td>
+            <td class="text-right" id="td-vol-marketing">0</td>
+            <td class="text-right" id="td-billable-marketing">0</td>
+            <td class="text-right" id="td-cost-marketing">$ 0.00</td>
+          </tr>
+          <tr>
+            <td>Utility</td>
+            <td class="text-right" id="td-vol-utility">0</td>
+            <td class="text-right" id="td-billable-utility">0</td>
+            <td class="text-right" id="td-cost-utility">$ 0.00</td>
+          </tr>
+          <tr>
+            <td>Authentication</td>
+            <td class="text-right" id="td-vol-auth">0</td>
+            <td class="text-right" id="td-billable-auth">0</td>
+            <td class="text-right" id="td-cost-auth">$ 0.00</td>
+          </tr>
+          <tr class="tax-row">
+            <td colspan="3">Subtotal</td>
+            <td class="text-right" id="td-subtotal">$ 0.00</td>
+          </tr>
+          <tr class="tax-row" id="row-wht" style="display: none;">
+            <td colspan="3" id="td-wht-label">Withholding Tax (WHT)</td>
+            <td class="text-right" id="td-wht-amount">$ 0.00</td>
+          </tr>
+          <tr class="tax-row" id="row-sst" style="display: none;">
+            <td colspan="3" id="td-sst-label">Local SST</td>
+            <td class="text-right" id="td-sst-amount">$ 0.00</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="3">Estimated Total (USD)</td>
+            <td class="text-right" id="td-grand-total">$ 0.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="config.js?v=2"></script>
+  <script src="app.js?v=2"></script>
+</body>
+</html>
